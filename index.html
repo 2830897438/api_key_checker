@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API 全能检测器 | 专业版</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="theme-toggle" id="theme-toggle">
+    <i class="fas fa-moon"></i>
+</div>
+
+<div class="app-container">
+    <div class="header">
+        <h1>
+            <span class="gradient-text">API 全能检测器</span>
+            <span class="premium-tag">Pro</span>
+        </h1>
+        <p class="subtitle">一站式API密钥管理解决方案，轻松查询多种API的有效性、模型和余额信息</p>
+    </div>
+
+    <div class="main-card">
+        <div class="notice">
+            <i class="fas fa-info-circle"></i>
+            <div><strong>提示:</strong> 本程序纯前端实现，安全可靠，不会存储您的任何API密钥。</div>
+        </div>
+
+        <div class="form-group">
+            <label for="api-type"><i class="fas fa-cubes"></i> API 类型:</label>
+            <select id="api-type">
+                <option value="openai">OpenAI 格式</option>
+                <option value="gemini">Gemini 格式</option>
+                <option value="siliconflow">Siliconflow 格式</option>
+                <option value="deepseek">DeepSeek 格式</option>
+            </select>
+        </div>
+
+        <div class="form-group" id="base-url-group">
+            <label for="base-url"><i class="fas fa-server"></i> Base URL:</label>
+            <input type="text" id="base-url" placeholder="请输入 API 的 Base URL">
+        </div>
+        
+        <div class="cors-section" id="cors-section-group" style="display: none;">
+            <h3 class="section-title"><i class="fas fa-exchange-alt"></i> CORS 代理设置 (DeepSeek)</h3>
+            <div class="form-group">
+                <select id="cors-proxy">
+                    <option value="" selected>不使用代理 (推荐)</option>
+                    <option value="custom">自定义代理</option>
+                </select>
+            </div>
+            <div class="form-group" id="custom-proxy-group" style="display: none;">
+                <label for="custom-proxy-url"><i class="fas fa-link"></i> 自定义代理URL:</label>
+                <input type="text" id="custom-proxy-url" placeholder="例如: https://your-proxy.com/?url=">
+            </div>
+        </div>
+
+        <div class="tabs">
+            <div class="tab active" data-tab="batch"><i class="fas fa-layer-group"></i> 批量查询</div>
+        </div>
+
+        <div class="tab-content active" id="batch-tab">
+            <div class="form-group">
+                <label for="batch-api-keys"><i class="fas fa-key"></i> 输入 API 密钥 (每行一个或用逗号/空格分隔):</label>
+                <textarea id="batch-api-keys" placeholder="请在此处输入您的 API 密钥..."></textarea>
+            </div>
+            <button id="query-batch"><i class="fas fa-rocket"></i> 开始检测</button>
+        </div>
+
+        <div class="loading" id="loading">
+            <div class="spinner-container"><div class="spinner"></div></div>
+            <p class="loading-text">正在查询中，请稍候...</p>
+        </div>
+
+        <div class="sort-container" id="sort-container" style="display: none; margin-top: 25px;">
+            <button id="sort-button" class="sort-button"><i class="fas fa-sort-amount-down"></i> 按余额排序</button>
+            <button id="collapse-button" class="sort-button" style="margin-left: 10px;"><i class="fas fa-chevron-up"></i> 折叠所有</button>
+        </div>
+
+        <div class="results" id="results"></div>
+
+        <div id="export-container" style="display: none; margin-top: 20px;">
+            <div class="export-options">
+                <h3 class="section-title"><i class="fas fa-cog"></i> 导出选项</h3>
+                <div class="checkbox-container">
+                    <input type="checkbox" id="export-invalid" checked>
+                    <label for="export-invalid">包含不可用的API密钥</label>
+                </div>
+            </div>
+            <div style="text-align: center;">
+                <button id="export-button" class="export-button"><i class="fas fa-file-download"></i> 导出查询结果</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>© 2025 API 全能检测器 | 专业版</p>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
